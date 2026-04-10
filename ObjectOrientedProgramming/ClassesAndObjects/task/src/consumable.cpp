@@ -23,5 +23,12 @@ void ConsumableObject::onCollision(const GameObject &object, const CollisionInfo
 }
 
 const sf::Texture* ConsumableObject::getTexture(TextureManager& textureManager) const {
-    // TODO: write your solution here
+    switch (getStatus()) {
+        case GameObjectStatus::NORMAL:
+            return textureManager.getTexture(GameTextureID::STAR);
+        case GameObjectStatus::WARNED:
+            return textureManager.getTexture(GameTextureID::STAR_CONCERNED);
+        case GameObjectStatus::DESTROYED:
+            return nullptr;
+    }
 }

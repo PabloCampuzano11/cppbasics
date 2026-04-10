@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(ObjectOrientedProgramming-ClassesAndObjects-Introduction)
+project(ObjectOrientedProgramming-ClassesAndObjects-StaticMembers)
 
 set(SRC
         src/main.cpp
@@ -11,12 +11,18 @@ set(SRC
         src/collision.cpp src/direction.cpp
         src/rectangle.cpp src/point.cpp
         src/operators.cpp src/utils.cpp
+        src/leaderboardscene.cpp src/leaderboard.cpp
 )
 
+set(TEST
+        test/test.cpp)
+
 add_executable(${PROJECT_NAME}-run ${SRC})
+
+configure_test_target(${PROJECT_NAME}-test "${SRC}" ${TEST})
 
 prepare_sfml_framework_lesson_task(
         "${CMAKE_CURRENT_SOURCE_DIR}/.."
         ${PROJECT_NAME}-run
-        ""
+        ${PROJECT_NAME}-test
 )
